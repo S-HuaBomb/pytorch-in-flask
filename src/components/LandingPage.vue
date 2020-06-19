@@ -122,15 +122,15 @@ import ToggleButton from "vue-js-toggle-button";
 Vue.use(VueSwal);
 Vue.use(ToggleButton);
 
-const axiosPix =
-  process.env.NODE_ENV === "development"
-    ? axios.create({ baseURL: "http://localhost:5001" })
-    : axios.create({ baseURL: "http://localhost:5001" });
+// const axiosPix =
+//   process.env.NODE_ENV === "development"
+//     ? axios.create({ baseURL: "http://localhost:5001" })
+//     : axios.create({ baseURL: "http://localhost:5001" });
 
 const axiosStyle =
   process.env.NODE_ENV === "development"
     ? axios.create({ baseURL: "http://localhost:5002" })
-    : axios.create({ baseURL: "http://wct.shbang.ink:5002" });
+    : axios.create({ baseURL: "http://localhost:5002" });
 
 export default {
   name: "LandingPage",

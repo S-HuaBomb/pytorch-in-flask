@@ -1,2 +1,4 @@
 # Project exclude paths
 /node_modules/
+/server/output/stylized/
+/server/output/contents/
