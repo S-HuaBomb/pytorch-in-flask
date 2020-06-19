@@ -38,16 +38,6 @@ class WCT(nn.Module):
         self.e5 = encoder5(vgg5)
         self.d5 = decoder5(decoder5_torch)
 
-        # self.e1 = torch.load('visdom_/e1.pth')
-        # self.d1 = torch.load('visdom_/d1.pth')
-        # self.e2 = torch.load('visdom_/e2.pth')
-        # self.d2 = torch.load('visdom_/d2.pth')
-        # self.e3 = torch.load('visdom_/e3.pth')
-        # self.d3 = torch.load('visdom_/d3.pth')
-        # self.e4 = torch.load('visdom_/e4.pth')
-        # self.d4 = torch.load('visdom_/d4.pth')
-        # self.e5 = torch.load('visdom_/e5.pth')
-        # self.d5 = torch.load('visdom_/d5.pth')
 
     def whiten_and_color(self, cF, sF):
         cFSize = cF.size()
@@ -97,81 +87,9 @@ class WCT(nn.Module):
         targetFeature = self.whiten_and_color(cFView, sFView)
         targetFeature = targetFeature.view_as(cF)
 
-        # wct_layer = targetFeature.clone().detach()
-        # wct_layer = wct_layer.to(torch.device('cpu'))
-        # wct_layer = wct_layer.float().squeeze(0)
-        # print(wct_layer.size(), wct_layer.dtype, wct_layer.ndimension())
-        # vutils.save_image(wct_layer, os.path.join('in-place/', '_wct_layer5.jpg'))
-        # self.save_image(vutils.make_grid(targetFeature, normalize=True))
-
         ccsF = alpha * targetFeature + (1.0 - alpha) * cF
         ccsF = ccsF.float().unsqueeze(0)
         # csF.data.resize_(ccsF.size()).copy_(ccsF)
         with torch.no_grad():
             csF.resize_(ccsF.size()).copy_(ccsF)
-            # wct_layer.resize_(targetFeature).copy_()
         return csF
-
-    @staticmethod
-    def save_image(tensor):
-        from torchvision import transforms
-        import matplotlib.pyplot as plt
-        import pylab
-        unloader = transforms.ToPILImage()
-        image = tensor.cpu().clone()  # clone the tensor
-        image = image.float().squeeze(0)  # remove the fake batch dimension
-        image = unloader(image)
-        plt.imshow(image)
-        pylab.show()
-        image.save('in-place/example.jpg')
-        plt.pause(0.1)
-
-    def visdom_(self):
-        import shutil
-
-        # 保存模型用于可视化
-        model_dict = {'e1': self.e1, 'd1': self.d1,
-                      'e2': self.e2, 'd2': self.d2,
-                      'e3': self.e3, 'd3': self.d3,
-                      'e4': self.e4, 'd4': self.d4,
-                      'e5': self.e5, 'd5': self.d5}
-        print('2')
-        # try:
-        #     if os.path.exists('visdom_/'):
-        #         shutil.rmtree('visdom_/')
-        #     os.mkdir('visdom_/')
-        # except OSError:
-        #     pass
-
-        # for k, v in model_dict.items():
-        #     self.save_model(v, k+'.pth')
-
-    @staticmethod
-    def save_model(model, name):
-        torch.save(model, os.path.join('visdom_', name))
-        print('1')
-
-
-if __name__ == '__main__':
-    import argparse
-
-    parser = argparse.ArgumentParser(description='WCT Pytorch')
-    parser.add_argument('--contentPath', default='images/content', help='path to train')
-    parser.add_argument('--stylePath', default='images/style', help='path to train')
-    parser.add_argument('--workers', default=2, type=int, metavar='N',
-                        help='number of data loading workers (default: 4)')
-    parser.add_argument('--vgg1', default='models/vgg_conv1_1.t7', help='Path to the VGG conv1_1')
-    parser.add_argument('--vgg2', default='models/vgg_conv2_1.t7', help='Path to the VGG conv2_1')
-    parser.add_argument('--vgg3', default='models/vgg_conv3_1.t7', help='Path to the VGG conv3_1')
-    parser.add_argument('--vgg4', default='models/vgg_conv4_1.t7', help='Path to the VGG conv4_1')
-    parser.add_argument('--vgg5', default='models/vgg_conv5_1.t7', help='Path to the VGG conv5_1')
-    parser.add_argument('--decoder5', default='models/feature_conv5_1.t7', help='Path to the decoder5')
-    parser.add_argument('--decoder4', default='models/feature_conv4_1.t7', help='Path to the decoder4')
-    parser.add_argument('--decoder3', default='models/feature_conv3_1.t7', help='Path to the decoder3')
-    parser.add_argument('--decoder2', default='models/feature_conv2_1.t7', help='Path to the decoder2')
-    parser.add_argument('--decoder1', default='models/feature_conv1_1.t7', help='Path to the decoder1')
-
-    args = parser.parse_args()
-
-    wct = WCT(args)
-    wct.visdom_()

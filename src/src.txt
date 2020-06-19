@@ -1,0 +1,18 @@
+src:
+│  App.vue  主vue组件
+│  main.js  // 前端项目的入口js
+│
+├─assets  // 前端用图
+│  ├─icons  // 存储.svg图片
+│  └─thumbs  // 存储前端九宫格中的风格图
+│
+├─components
+│      DrawingBoard.vue  // 画板组件，内容图展示在画板中
+│      ImageItem.vue  // 图片展示组件，用于遍历图片并展示
+│      LandingPage.vue  // 前端主页组件
+│
+└─router
+|        index.js  // 前端路由js文件
+|
+index.html  // 入口html文件
+

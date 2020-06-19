@@ -1,0 +1,16 @@
+server:
+│  app_stylize.py  // flask服务端，调用wct的风格转换API
+│  Loader.py  // 图片加载方法
+│  modelsNIPS.py  // 编码器、解码器网络结构的定义
+│  requirements.txt  // 项目依赖清单
+│  torchfile.py  // 修改模型加载load()方法
+│  util.py  // 模型加载、WCT算法实现
+│  wct.py  // 风格转换API
+│
+├─models  // 用于风格转换的10个预训练模型
+│
+├─output
+│  ├─contents  // 存储用户上传的内容图
+│  └─stylized  // 存储风格化结果输出
+│
+├─styles  // 前端的九宫格风格图片原图
