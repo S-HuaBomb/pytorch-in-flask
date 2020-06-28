@@ -75,7 +75,7 @@ pytorch-in-flask/
  
 ## 本地安装
 ### 预训练模型
-将这些训练好的[Release中的模型](https://github.com/S-HuaBomb/pytorch-in-flask/releases/tag/v1.0)放入项目中的 `server/models` 文件夹下。
+将这些训练好的[Release中的模型](https://github.com/S-HuaBomb/pytorch-in-flask/releases/tag/v1.1)放入项目中的 `server/models` 文件夹下。
 
 ### CUDA
 本人的笔记本开发环境如下：
