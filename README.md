@@ -7,7 +7,7 @@
 
 > 图像风格转换的深度学习算法研究和应用开发
 
-[**[Live Demo: WCT Style Transfer]**](http://wct.shbang.ink) *部署在阿里云ECS，2020.10将会过期*
+~~[**[Live Demo: WCT Style Transfer]**](http://wct.shbang.ink) *部署在阿里云ECS，2020.10已经过期。很后悔忘了低价续费 :sob:*~~
 
 
 * [简介](#简介)
@@ -19,6 +19,7 @@
   + [CUDA](#CUDA)
   + [后端](#后端)
   + [前端](#前端)
+  + [部署上线](#部署上线)
 
 
 ## 简介
@@ -136,3 +137,6 @@ npm run dev
 
 在浏览器打开这个URL：`http://localhost:8080`，就能看到前端界面，并且能跟后端完美通信。
 
+### 部署上线
+
+参考我的博客：[Flask+Vue+PyTorch深度学习前后端分离部署，配合Gunicorn+Nginx+阿里云服务器](https://blog.csdn.net/Run_Bomb/article/details/106543790)
