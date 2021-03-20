@@ -9,7 +9,7 @@ gevent==20.5.0
 greenlet==0.4.15
 idna==2.9
 itsdangerous==1.1.0
-Jinja2==2.11.1
+Jinja2==2.11.3
 kiwisolver==1.2.0
 MarkupSafe==1.1.1
 matplotlib==3.2.1
